@@ -3,6 +3,7 @@
 #include <map>
 #include <fstream>
 #include <cstdlib>
+#include <ctime>
 
 using std::pair;
 using std::map;
@@ -11,6 +12,9 @@ using std::ifstream;
 using std::cout;
 
 int main(int argc, char** argv){
+	int start, end, elapsed;
+	double seconds;
+	start = clock();
 	if (argc != 3){
 		cout << "usage: nnList [filename] [threshold value]" << std::endl;
 		return 0;
@@ -40,5 +44,9 @@ int main(int argc, char** argv){
 		if ((*it).second < threshold)
 			cout << it->first << "  Naughty!" << std::endl;
 	}
+	end = clock();
+	elapsed = end - start;
+	seconds = (double) elapsed/CLOCKS_PER_SEC;
+	cout << "elapsed time: " << seconds << " seconds" << std::endl;
 	return 0;
 }
